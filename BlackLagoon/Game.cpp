@@ -36,6 +36,7 @@ char* Game::getErrorMessage()
 //return true to exit game
 bool Game::updateGame()
 {
+	Sleep(16);
 	// Toggle display info on 'i'
 	if (m_inputDevice->displayInfo())
 	{
