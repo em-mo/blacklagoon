@@ -4,6 +4,8 @@
 #include <cppunit/extensions/HelperMacros.h>
 
 #include <HighScoreComponent.h>
+#include <sstream>
+#include <iostream>
 
 class HighScoreComponentTest : public CppUnit::TestFixture
 {
@@ -25,5 +27,8 @@ public:
 	void tearDown();
 
 private:
+	bool HighScoreComponentTest::readFromFile(const char * filename);
 	HighScoreComponent* _highScoreComponent;
+	std::vector<int> expectedScore;
+	std::string HighScoreComponentTest::vectorToString(std::vector<int> v1, std::vector<int> v2);
 };
