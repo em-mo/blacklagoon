@@ -23,6 +23,11 @@ public:
 	void setUp();
 
 	void testZero();
+	void testLow();
+	void testSortLast();
+	void testSortSecondLast();
+	void testSortFirst();
+	void testEmpty();
 
 	void tearDown();
 
@@ -31,4 +36,5 @@ private:
 	HighScoreComponent* _highScoreComponent;
 	std::vector<int> expectedScore;
 	std::string HighScoreComponentTest::vectorToString(std::vector<int> v1, std::vector<int> v2);
+	void doTest(std::string file, int score);
 };
