@@ -60,8 +60,9 @@ void HighScoreComponentTest::testEmpty()
 
 void HighScoreComponentTest::doTest(std::string file, int score)
 {
+	std::string other(file);
 	readFromFile(file.append("_expected.txt").c_str());
-	_highScoreComponent->readFromFile(file.append(".txt").c_str());
+	_highScoreComponent->readFromFile(other.append(".txt").c_str());
 	_highScoreComponent->submitScore(score);
 }
 

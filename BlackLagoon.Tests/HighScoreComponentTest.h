@@ -10,11 +10,16 @@
 class HighScoreComponentTest : public CppUnit::TestFixture
 {
 
-  CPPUNIT_TEST_SUITE(HighScoreComponentTest);
+	CPPUNIT_TEST_SUITE(HighScoreComponentTest);
   
-  CPPUNIT_TEST(testZero);
+    CPPUNIT_TEST(testZero);
+    CPPUNIT_TEST(testLow);
+	CPPUNIT_TEST(testSortLast);
+	CPPUNIT_TEST(testSortSecondLast);
+	CPPUNIT_TEST(testSortFirst);
+	CPPUNIT_TEST(testEmpty);
   
-  CPPUNIT_TEST_SUITE_END();
+    CPPUNIT_TEST_SUITE_END();
 
 public:
 	HighScoreComponentTest(void);
