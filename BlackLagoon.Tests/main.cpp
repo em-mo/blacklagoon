@@ -20,7 +20,7 @@ int _tmain(int argc, _TCHAR* argv[])
 
 		runner.addTest(registry.makeTest());
 		wasSuccessful = runner.run("", false);*/
-		
+
 		CppUnit::TestFactoryRegistry &registry1 = CppUnit::TestFactoryRegistry::getRegistry("HighScoreComponentTestSuite");
 		CppUnit::TestFactoryRegistry &registry2 = CppUnit::TestFactoryRegistry::getRegistry("PlayerTestSuite");
 		CppUnit::TestFactoryRegistry &registry3 = CppUnit::TestFactoryRegistry::getRegistry("GameObjectTestSuite");
