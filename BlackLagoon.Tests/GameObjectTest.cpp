@@ -23,5 +23,12 @@ void GameObjectTest::tearDown()
 
 void GameObjectTest::testIsDead()
 {
+	_player->Health = -1;
+	CPPUNIT_ASSERT_EQUAL_MESSAGE("test 1", true, _player->isDead());
 
+	_player->Health = 0;
+	CPPUNIT_ASSERT_EQUAL_MESSAGE("test 2", true, _player->isDead());
+
+	_player->Health = 1;
+	CPPUNIT_ASSERT_EQUAL_MESSAGE("test 3", false, _player->isDead());
 }
