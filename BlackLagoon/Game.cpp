@@ -157,6 +157,7 @@ bool Game::updateGame_menu(float deltaTime)
 				changeState(Game::ENDCREDITS);
 				break;
 			case m_menuComponent->EXIT:
+				return true;
 				break;
 		}
 	}

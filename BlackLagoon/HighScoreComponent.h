@@ -4,6 +4,8 @@
 #include "stdafx.h"
 #include "IHighScoreComponent.h"
 #include <vector>
+#include <algorithm>
+#include <functional>
 
 #define NR_OF_SCORES 10
 

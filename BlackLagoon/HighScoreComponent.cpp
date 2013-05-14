@@ -30,14 +30,26 @@ HighScoreComponent::~HighScoreComponent()
 
 void HighScoreComponent::submitScore(int score)
 {
-	m_lastScoreIndex = 0;
+	m_lastScoreIndex = -1;
+
+	if (score <= 0)
+		return;
+
+	std::vector<int>::iterator it;
 
 	m_scores.insert(m_scores.begin(), score);
+
+	std::sort(m_scores.begin(), m_scores.end(), std::greater<int>());
 
 	if (m_scores.size() > m_nrOfScores)
 	{
 		m_scores.pop_back();
 	}
+
+	it = find(m_scores.begin(), m_scores.end(), score);
+
+	if (*it == score)
+		m_lastScoreIndex = it - m_scores.begin();
 
 }
 

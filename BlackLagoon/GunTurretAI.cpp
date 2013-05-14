@@ -25,9 +25,14 @@ void GunTurretAI::tick(GameObject* go, float deltaTime, IGameObjectManager* gom)
 	angle -= go->getRotation();
 
 	// Store for fire to use
-	m_angleToTarget =  angle;
+	m_angleToTarget = angle;
 
-	go->setAngularVelocity( (m_angleToTarget / M_PI_2) * GUN_TURRET_ANGULAR_ACCELERATION );
+	if (angle > M_PI)
+		angle -= 2 * M_PI;
+	else if (angle < -M_PI)
+		angle += 2 * M_PI;
+
+	go->setAngularVelocity( (angle / M_PI_2) * GUN_TURRET_ANGULAR_ACCELERATION );
 }
 
 bool GunTurretAI::fire(float deltaTime)

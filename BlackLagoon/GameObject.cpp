@@ -38,7 +38,7 @@ void GameObject::tick(float deltaTime, IGameObjectManager* gom)
 
 bool GameObject::isDead()
 {
-	return (this->Health < 0);
+	return (this->Health <= 0);
 }
 
 void GameObject::setNewShot(Shot* shot)

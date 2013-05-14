@@ -33,6 +33,7 @@ bool Player::fire(float deltaTime)
 	if (m_AI->fire(deltaTime))
 	{
 		if (Ammo > 0) {
+			Ammo--;
 			return true;
 		}
 	}

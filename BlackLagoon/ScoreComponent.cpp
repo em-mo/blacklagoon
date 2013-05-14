@@ -66,6 +66,7 @@ void ScoreComponent::reset()
 {
 	m_nrOfEnemiesKilled = 0;
 	m_time = 0.0f;
+	m_score = 0;
 }
 
 void ScoreComponent::render(float x, float y)
