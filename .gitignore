@@ -7,6 +7,9 @@
 *.opensdf
 *.sdf
 *.vcxproj*
+*.ods#
+*.dll
+*.htm
 UpgradeLog.XML
 _UpgradeReport_Files/
 hge181/
@@ -17,4 +20,5 @@ BlackLagoon/Debug/
 BlackLagoon/Game/
 BlackLagoon.Tests/Release/
 BlackLagoon.Tests/Debug
+BlackLagoon.Tests/Tests/
 ipch/
