@@ -4,6 +4,8 @@
 #include <cppunit/extensions/HelperMacros.h>
 
 #include <Player.h>
+#include <PlayerAI.h>
+#include "InputDeviceStub.h"
 
 class PlayerTest : public CppUnit::TestFixture
 {
@@ -26,4 +28,6 @@ public:
 
 private:
 	Player* _player;
+	PlayerAI* _playerAI;
+	InputDeviceStub* _inputDeviceStub;
 };
