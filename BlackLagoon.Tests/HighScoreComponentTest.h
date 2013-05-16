@@ -13,11 +13,9 @@ class HighScoreComponentTest : public CppUnit::TestFixture
 	CPPUNIT_TEST_SUITE(HighScoreComponentTest);
   
     CPPUNIT_TEST(testZero);
-    CPPUNIT_TEST(testLow);
-	CPPUNIT_TEST(testSortLast);
-	CPPUNIT_TEST(testSortSecondLast);
-	CPPUNIT_TEST(testSortFirst);
-	CPPUNIT_TEST(testEmpty);
+	CPPUNIT_TEST(testSortAsc);
+	CPPUNIT_TEST(testSortDesc);
+	CPPUNIT_TEST(testFull);
   
     CPPUNIT_TEST_SUITE_END();
 
@@ -28,17 +26,21 @@ public:
 	void setUp();
 
 	void testZero();
-	void testLow();
-	void testSortLast();
-	void testSortSecondLast();
-	void testSortFirst();
-	void testEmpty();
+	void testSortAsc();
+	void testSortDesc();
+	void testFull();
 
 	void tearDown();
 
 private:
 	bool HighScoreComponentTest::readFromFile(const char * filename);
-	HighScoreComponent* _highScoreComponent;
+
+	HighScoreComponent* _highScoreComponentZero;
+	HighScoreComponent* _highScoreComponentSortAsc;
+	HighScoreComponent* _highScoreComponentSortDesc;
+	HighScoreComponent* _highScoreComponentFull;
+
+	
 	std::vector<int> expectedScore;
 	std::string HighScoreComponentTest::vectorToString(std::vector<int> v1, std::vector<int> v2);
 	void doTest(std::string file, int score);

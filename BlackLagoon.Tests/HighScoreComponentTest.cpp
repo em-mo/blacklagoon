@@ -14,56 +14,85 @@ HighScoreComponentTest::~HighScoreComponentTest(void)
 
 void HighScoreComponentTest::setUp()
 {
-	std::string fileName("filnamn");
-	_highScoreComponent = new HighScoreComponent(NULL, NULL, NULL, NULL, NULL, fileName.c_str());
+	_highScoreComponentZero = new HighScoreComponent(NULL, NULL, NULL, NULL, NULL, NULL);
+	_highScoreComponentSortAsc = new HighScoreComponent(NULL, NULL, NULL, NULL, NULL, NULL);
+	_highScoreComponentSortDesc = new HighScoreComponent(NULL, NULL, NULL, NULL, NULL, NULL);
+	_highScoreComponentFull = new HighScoreComponent(NULL, NULL, NULL, NULL, NULL, NULL);
 }
 void HighScoreComponentTest::tearDown()
 {
-	delete _highScoreComponent;
+	delete _highScoreComponentZero;
+	delete _highScoreComponentSortAsc;
+	delete _highScoreComponentSortDesc;
+	delete _highScoreComponentFull;
 }
 
 void HighScoreComponentTest::testZero()
 {
-	doTest("highscore_zero", 0);
-	CPPUNIT_ASSERT_MESSAGE(vectorToString(expectedScore, _highScoreComponent->scores()), expectedScore == _highScoreComponent->scores());
+	expectedScore.clear();
+
+	_highScoreComponentZero->submitScore(0);
+
+	CPPUNIT_ASSERT_MESSAGE(vectorToString(expectedScore, _highScoreComponentZero->scores()), expectedScore == _highScoreComponentZero->scores());
 }
 
-void HighScoreComponentTest::testLow()
+void HighScoreComponentTest::testSortAsc()
 {
-	doTest("highscore_low", 50);
-	CPPUNIT_ASSERT_MESSAGE(vectorToString(expectedScore, _highScoreComponent->scores()), expectedScore == _highScoreComponent->scores());
+	expectedScore.clear();
+	expectedScore.push_back(500);
+	expectedScore.push_back(400);
+	expectedScore.push_back(300);
+	expectedScore.push_back(200);
+
+	_highScoreComponentSortAsc->submitScore(200);
+	_highScoreComponentSortAsc->submitScore(300);
+	_highScoreComponentSortAsc->submitScore(400);
+	_highScoreComponentSortAsc->submitScore(500);
+
+	CPPUNIT_ASSERT_MESSAGE(vectorToString(expectedScore, _highScoreComponentSortAsc->scores()), expectedScore == _highScoreComponentSortAsc->scores());
 }
 
-void HighScoreComponentTest::testSortLast()
+void HighScoreComponentTest::testSortDesc()
 {
-	doTest("highscore_sort_last", 150);
-	CPPUNIT_ASSERT_MESSAGE(vectorToString(expectedScore, _highScoreComponent->scores()), expectedScore == _highScoreComponent->scores());
+	expectedScore.clear();
+	expectedScore.push_back(500);
+	expectedScore.push_back(400);
+	expectedScore.push_back(300);
+	expectedScore.push_back(200);
+
+	_highScoreComponentSortDesc->submitScore(500);
+	_highScoreComponentSortDesc->submitScore(400);
+	_highScoreComponentSortDesc->submitScore(300);
+	_highScoreComponentSortDesc->submitScore(200);
+	CPPUNIT_ASSERT_MESSAGE(vectorToString(expectedScore, _highScoreComponentSortDesc->scores()), expectedScore == _highScoreComponentSortDesc->scores());
 }
 
-void HighScoreComponentTest::testSortSecondLast()
+void HighScoreComponentTest::testFull()
 {
-	doTest("highscore_sort_second_last", 250);
-	CPPUNIT_ASSERT_MESSAGE(vectorToString(expectedScore, _highScoreComponent->scores()), expectedScore == _highScoreComponent->scores());
-}
+	expectedScore.clear();
+	expectedScore.push_back(1000);
+	expectedScore.push_back(900);
+	expectedScore.push_back(800);
+	expectedScore.push_back(700);
+	expectedScore.push_back(600);
+	expectedScore.push_back(500);
+	expectedScore.push_back(400);
+	expectedScore.push_back(300);
+	expectedScore.push_back(200);
+	expectedScore.push_back(100);
 
-void HighScoreComponentTest::testSortFirst()
-{
-	doTest("highscore_sort_first", 2000);
-	CPPUNIT_ASSERT_MESSAGE(vectorToString(expectedScore, _highScoreComponent->scores()), expectedScore == _highScoreComponent->scores());
-}
-
-void HighScoreComponentTest::testEmpty()
-{
-	doTest("highscore_empty", 500);
-	CPPUNIT_ASSERT_MESSAGE(vectorToString(expectedScore, _highScoreComponent->scores()), expectedScore == _highScoreComponent->scores());
-}
-
-void HighScoreComponentTest::doTest(std::string file, int score)
-{
-	std::string other(file);
-	readFromFile(file.append("_expected.txt").c_str());
-	_highScoreComponent->readFromFile(other.append(".txt").c_str());
-	_highScoreComponent->submitScore(score);
+	_highScoreComponentFull->submitScore(200);
+	_highScoreComponentFull->submitScore(300);
+	_highScoreComponentFull->submitScore(400);
+	_highScoreComponentFull->submitScore(1000);
+	_highScoreComponentFull->submitScore(600);
+	_highScoreComponentFull->submitScore(100);
+	_highScoreComponentFull->submitScore(500);
+	_highScoreComponentFull->submitScore(700);
+	_highScoreComponentFull->submitScore(900);
+	_highScoreComponentFull->submitScore(800);
+	_highScoreComponentFull->submitScore(50);
+	CPPUNIT_ASSERT_MESSAGE(vectorToString(expectedScore, _highScoreComponentFull->scores()), expectedScore == _highScoreComponentFull->scores());
 }
 
 std::string HighScoreComponentTest::vectorToString(std::vector<int> v1, std::vector<int> v2) {
@@ -87,35 +116,4 @@ std::string HighScoreComponentTest::vectorToString(std::vector<int> v1, std::vec
 		str.append("\n");
 	}
 	return str;
-}
-
-bool HighScoreComponentTest::readFromFile(const char * filename)
-{
-	if (filename != 0)
-	{
-		std::fstream f(filename, std::ios::in);
-		if (f.good())
-		{
-			int tmp;
-
-			expectedScore.clear();
-
-			do
-			{
-				f >> tmp;
-				if (f.good())
-				{
-					expectedScore.push_back(tmp);
-				}
-			} while (!f.fail());
-
-			f.close();
-		} else {
-			return false;
-		}
-
-	} else {
-		return false;
-	}
-	return true;
 }
