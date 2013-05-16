@@ -300,6 +300,7 @@ void GameWorld::checkCollisionVsPlayer(GameObject* go, Player* player)
 		
 		// Collision Damage
 		go->Health -= COLLISION_DAMAGE;
+		player->Health -= COLLISION_DAMAGE;
 	}
 }
 
