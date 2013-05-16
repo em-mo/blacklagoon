@@ -4,3 +4,5 @@
 #include <BasicGameObject.cpp>
 #include <Shot.cpp>
 #include <HelpFunctions.cpp>
+#include <PlayerAI.cpp>
+#include <IAI.cpp>
